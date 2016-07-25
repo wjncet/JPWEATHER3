@@ -44,14 +44,16 @@ public class Utility {
                     dateLabel = info.getString("dateLabel");
                     telop = info.getString("telop");
                     JSONObject temperature = info.getJSONObject("temperature");
-                    JSONObject minObj = temperature.getJSONObject("min");
-                    JSONObject maxObj = temperature.getJSONObject("max");
+
+
                     try {
+                        JSONObject minObj = temperature.getJSONObject("min");
                         min = minObj.getString("celsius");
                     } catch (JSONException e) {
                         min = "--";
                     }
                     try {
+                        JSONObject maxObj = temperature.getJSONObject("max");
                         max = maxObj.getString("celsius");
                     } catch (JSONException e) {
                         max = "--";
