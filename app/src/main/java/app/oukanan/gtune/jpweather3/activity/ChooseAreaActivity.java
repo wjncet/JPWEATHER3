@@ -3,9 +3,11 @@ package app.oukanan.gtune.jpweather3.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -91,13 +93,21 @@ public class ChooseAreaActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        isFromWeatherActivity = getIntent().getBooleanExtra("from_weather_activity", false);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("selected", false) && !isFromWeatherActivity) {
+            Intent intent = new Intent(this, WeatherActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.choose_area);
         listView = (ListView) findViewById(R.id.list_view);
         titleText = (TextView) findViewById(R.id.title_text);
 
         adapter = new AreaAdapter(ChooseAreaActivity.this, R.layout.lv_item, dataList);
-        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
         listView.setAdapter(adapter);
         jpWeatherDB = JPWeatherDB.getInstance(this);
 
@@ -259,14 +269,13 @@ public class ChooseAreaActivity extends Activity {
             querySub1();
         } else if (currentLevel == LEVEL_SUB1) {
             queryMain();
+        } else {
+            if (isFromWeatherActivity) {
+                Intent intent = new Intent(this, WeatherActivity.class);
+                startActivity(intent);
+            }
+            finish();
         }
-//        else {
-//            if (isFromWeatherActivity) {
-//                Intent intent = new Intent(this, WeatherActivity.class);
-//                startActivity(intent);
-//            }
-//            finish();
-//        }
     }
 
 }
