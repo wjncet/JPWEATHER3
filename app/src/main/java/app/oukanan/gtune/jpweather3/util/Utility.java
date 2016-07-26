@@ -3,7 +3,6 @@ package app.oukanan.gtune.jpweather3.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,9 +63,6 @@ public class Utility {
                     continue;
                 }
             }
-
-
-            Log.d("title ::: ", forecasts.getJSONObject(0).getString("dateLabel"));
 
 
             saveWeatherInfo(context, title, subCode2, min, max,
