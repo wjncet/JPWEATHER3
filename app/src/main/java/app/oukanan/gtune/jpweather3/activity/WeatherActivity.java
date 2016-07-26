@@ -25,44 +25,78 @@ import app.oukanan.gtune.jpweather3.util.Utility;
 public class WeatherActivity extends Activity implements OnClickListener {
 
     private LinearLayout weatherInfoLayout;
+    private LinearLayout tom_weatherInfoLayout;
     /**
-     * 用于显示城市名
+     *
      */
     private TextView cityNameText;
     /**
-     * 用于显示发布时间
+     *
      */
     private TextView publishText;
     /**
-     * 用于显示天气描述信息
+     *
+     */
+    private TextView tom_weatherDespText;
+    /**
+     *
+     */
+    private TextView tom_temp1Text;
+    /**
+     *
+     */
+    private TextView tom_temp2Text;
+    /**
+     *
+     */
+    private TextView tomorrowDateText;
+
+    /**
+     *
      */
     private TextView weatherDespText;
     /**
-     * 用于显示气温1
+     *
      */
     private TextView temp1Text;
     /**
-     * 用于显示气温2
+     *
      */
     private TextView temp2Text;
     /**
-     * 用于显示当前日期
+     *
      */
     private TextView currentDateText;
+
     /**
-     * 切换城市按钮
+     *
      */
     private Button switchCity;
     /**
-     * 更新天气按钮
+     *
      */
     private Button refreshWeather;
+
+    /**
+     *
+     */
+    private Button checkBtn;
+
+    /**
+     *
+     */
+    private Button unkonw1Btn;
+    /**
+     *
+     */
+    private Button unkonw2Btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.weather_layout);
+
         weatherInfoLayout = (LinearLayout) findViewById(R.id.weather_info_layout);
         cityNameText = (TextView) findViewById(R.id.city_name);
         publishText = (TextView) findViewById(R.id.publish_text);
@@ -70,19 +104,30 @@ public class WeatherActivity extends Activity implements OnClickListener {
         temp1Text = (TextView) findViewById(R.id.temp1);
         temp2Text = (TextView) findViewById(R.id.temp2);
         currentDateText = (TextView) findViewById(R.id.current_date);
+
+        tom_weatherInfoLayout = (LinearLayout) findViewById(R.id.tom_weather_info_layout);
+        tom_weatherDespText = (TextView) findViewById(R.id.tom_weather_desp);
+        tom_temp1Text = (TextView) findViewById(R.id.tom_temp1);
+        tom_temp2Text = (TextView) findViewById(R.id.tom_temp2);
+        tomorrowDateText = (TextView) findViewById(R.id.tomorrow_date);
+
         switchCity = (Button) findViewById(R.id.switch_city);
         refreshWeather = (Button) findViewById(R.id.refresh_weather);
+        checkBtn = (Button) findViewById(R.id.checkbtn);
+
         String sub2Code = getIntent().getStringExtra("sub2Code");
         if (!TextUtils.isEmpty(sub2Code)) {
-            publishText.setText("同步中...");
+            publishText.setText("同期中...");
             weatherInfoLayout.setVisibility(View.INVISIBLE);
             cityNameText.setVisibility(View.INVISIBLE);
+            tom_weatherInfoLayout.setVisibility(View.INVISIBLE);
             queryWeatherInfo(sub2Code);
         } else {
             showWeather();
         }
         switchCity.setOnClickListener(this);
         refreshWeather.setOnClickListener(this);
+        checkBtn.setOnClickListener(this);
     }
 
     @Override
@@ -95,12 +140,16 @@ public class WeatherActivity extends Activity implements OnClickListener {
                 finish();
                 break;
             case R.id.refresh_weather:
-                publishText.setText("同步中...");
+                publishText.setText("同期中...");
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 String sub2Code = prefs.getString("subCode2", "");
                 if (!TextUtils.isEmpty(sub2Code)) {
                     queryWeatherInfo(sub2Code);
                 }
+                break;
+            case R.id.checkbtn:
+                Intent checkIntent = new Intent(WeatherActivity.this, GotoLivedoorActivity.class);
+                startActivity(checkIntent);
                 break;
             default:
                 break;
@@ -118,7 +167,6 @@ public class WeatherActivity extends Activity implements OnClickListener {
         HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(final String response) {
-                // 处理服务器返回的天气信息
                 Utility.handleWeatherResponse(WeatherActivity.this, response, sub2Code);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -134,7 +182,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        publishText.setText("同步失败");
+                        publishText.setText("同期失敗");
                     }
                 });
             }
@@ -147,12 +195,19 @@ public class WeatherActivity extends Activity implements OnClickListener {
     private void showWeather() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         cityNameText.setText(prefs.getString("title", ""));
-        temp1Text.setText(prefs.getString("min", "")+"℃");
-        temp2Text.setText(prefs.getString("max", "")+"℃");
-        weatherDespText.setText(prefs.getString("telop", ""));
         publishText.setText(prefs.getString("publicTime", "") + "発表");
-        currentDateText.setText(prefs.getString("current_date", ""));
+
+        temp1Text.setText(prefs.getString("min", "") + "℃");
+        temp2Text.setText(prefs.getString("max", "") + "℃");
+        weatherDespText.setText(prefs.getString("telop", ""));
+        currentDateText.setText(prefs.getString("todayLabel", "") + " " + prefs.getString("current_date", ""));
+
+        tom_temp1Text.setText(prefs.getString("tom_min", "") + "℃");
+        tom_temp2Text.setText(prefs.getString("tom_max", "") + "℃");
+        tom_weatherDespText.setText(prefs.getString("tom_telop", ""));
+        tomorrowDateText.setText(prefs.getString("tomorrowLabel", "") + " " + prefs.getString("tomorrow_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+        tom_weatherInfoLayout.setVisibility(View.VISIBLE);
     }
 }

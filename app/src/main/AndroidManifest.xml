@@ -26,6 +26,8 @@
         </activity>
         <activity android:name="app.oukanan.gtune.jpweather3.activity.WeatherActivity" >
         </activity>
+        <activity android:name="app.oukanan.gtune.jpweather3.activity.GotoLivedoorActivity" >
+        </activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

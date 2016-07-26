@@ -2,4 +2,6 @@
     <string name="app_name">JPWEATHER3</string>
     <string name="btn1">戻る</string>
     <string name="btn2">更新</string>
+    <string name="btn3">確認用</string>
+    <string name="btn4">未実装</string>
 </resources>

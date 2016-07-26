@@ -1,6 +1,8 @@
 package app.oukanan.gtune.jpweather3.util;
 
-import app.oukanan.gtune.jpweather3.model.DataMd;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by 王佳楠 on 2016/07/25.
@@ -77,8 +79,21 @@ public class EscapeUnescape {
 //            e.printStackTrace();
 //        }
 
-        System.out.println( DataMd.sub2ArrSub1Code.length);
-        System.out.println( DataMd.sub2ArrCode.length);
-        System.out.println( DataMd.sub2ArrName.length);
+        String date = "2010-02-01";
+
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+
+            Date d = sf.parse(date);
+            System.out.println(sf.format(d));
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+        }
+        System.out.println("\u4eca\u65e5");
+        System.out.println("\u660e\u65e5");
+        System.out.println("\u660e\u5f8c\u65e5");
+
     }
 }
