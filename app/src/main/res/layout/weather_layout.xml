@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#27A5F9"
+        android:background="#1874CD"
      >
 
         <TextView
@@ -192,13 +192,26 @@
                     android:textSize="40sp" />
             </LinearLayout>
         </LinearLayout>
-        <!--<LinearLayout-->
-        <!--android:id="@+id/adLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_alignParentBottom="true" >-->
-        <!--</LinearLayout>-->
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:text="降水"
+            android:id="@+id/rain"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/line1"
+            android:layout_toStartOf="@+id/publish_text" />
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:text="服装アドバイス"
+            android:id="@+id/clothes"
+            android:layout_above="@+id/line3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
     </RelativeLayout>
 
     <!--<RelativeLayout-->

@@ -1,16 +1,21 @@
 package app.oukanan.gtune.jpweather3.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import app.oukanan.gtune.jpweather3.R;
@@ -80,6 +85,16 @@ public class WeatherActivity extends Activity implements OnClickListener {
     /**
      *
      */
+    private Button rain;
+
+    /**
+     *
+     */
+    private Button clothes;
+
+    /**
+     *
+     */
     private Button checkBtn;
 
     /**
@@ -114,6 +129,8 @@ public class WeatherActivity extends Activity implements OnClickListener {
         switchCity = (Button) findViewById(R.id.switch_city);
         refreshWeather = (Button) findViewById(R.id.refresh_weather);
         checkBtn = (Button) findViewById(R.id.checkbtn);
+        rain = (Button) findViewById(R.id.rain);
+        clothes = (Button) findViewById(R.id.clothes);
 
         String sub2Code = getIntent().getStringExtra("sub2Code");
         if (!TextUtils.isEmpty(sub2Code)) {
@@ -128,6 +145,9 @@ public class WeatherActivity extends Activity implements OnClickListener {
         switchCity.setOnClickListener(this);
         refreshWeather.setOnClickListener(this);
         checkBtn.setOnClickListener(this);
+
+        rain.setOnClickListener(this);
+        clothes.setOnClickListener(this);
     }
 
     @Override
@@ -150,6 +170,23 @@ public class WeatherActivity extends Activity implements OnClickListener {
             case R.id.checkbtn:
                 Intent checkIntent = new Intent(WeatherActivity.this, GotoLivedoorActivity.class);
                 startActivity(checkIntent);
+                break;
+
+            case R.id.rain:
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.rain_layout, (ViewGroup) findViewById(R.id.rain_v_layout));
+                AlertDialog.Builder dialog = new AlertDialog.Builder(WeatherActivity.this);
+
+                String[] data = {"Apple", "Banana", "Orange", "Watermelon", "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango"};
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+                ListView listView = (ListView) layout.findViewById(R.id.rain_listView);
+                listView.setAdapter(adapter);
+                // dialog.setTitle("降水");
+                //  dialog.setView(layout).setNegativeButton("閉じる", null).show();
+                dialog.setView(layout).setNegativeButton("閉じる", null).show();
+                break;
+            case R.id.clothes:
+
                 break;
             default:
                 break;
