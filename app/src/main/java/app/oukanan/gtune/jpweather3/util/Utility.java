@@ -115,6 +115,11 @@ public class Utility {
             editor.putString("tom_telop", tom_telop);
             editor.putString("tomorrow_date", tomorrow);
 
+
+
+
+
+
             editor.commit();
 //=---------------------------------------------------
 //            saveWeatherInfo(context, title, subCode2, min, max,

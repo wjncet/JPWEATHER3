@@ -2,13 +2,185 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rain_v_layout" >
+    android:id="@+id/rain_v_layout"
+    android:orientation="vertical" >
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rain_listView"
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:stretchColumns="*"
+        android:background="#000000">
+<TableRow>
+    <TextView
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:text="時間帯"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="#33FF33"
     />
+
+    <TextView
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:text="降水確率"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:background="#33FF33"
+  />
+    <TextView
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:text="傘"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:background="#33FF33"
+ />
+</TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:background="#FFFFFF"
+                android:text="深夜（0-6）"/>
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/rain06"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/umbrella06"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:background="#FFFFFF"
+                android:text="朝（6-12）"/>
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/rain612"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/umbrella612"/>
+
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:background="#FFFFFF"
+                android:text="昼（12-18）"
+                />
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/rain1218"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/umbrella1218"/>
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:background="#FFFFFF"
+                android:text="夜（18-24）"/>
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:id="@+id/rain1824"/>
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:background="#FFFFFF"
+                android:text=""
+                android:id="@+id/umbrella1824"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:id="@+id/dia_close"
+                android:layout_span="3"
+                />
+
+        </TableRow>
+
+
+
+
+
+    </TableLayout>
+
+
+
 
 
 </LinearLayout>

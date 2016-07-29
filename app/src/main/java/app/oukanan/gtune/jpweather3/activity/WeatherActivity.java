@@ -12,10 +12,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import app.oukanan.gtune.jpweather3.R;
@@ -173,19 +171,57 @@ public class WeatherActivity extends Activity implements OnClickListener {
                 break;
 
             case R.id.rain:
+
                 LayoutInflater inflater = getLayoutInflater();
                 View layout = inflater.inflate(R.layout.rain_layout, (ViewGroup) findViewById(R.id.rain_v_layout));
-                AlertDialog.Builder dialog = new AlertDialog.Builder(WeatherActivity.this);
-
-                String[] data = {"Apple", "Banana", "Orange", "Watermelon", "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango"};
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
-                ListView listView = (ListView) layout.findViewById(R.id.rain_listView);
-                listView.setAdapter(adapter);
+          //      AlertDialog.Builder customBuilder  = new AlertDialog.Builder(WeatherActivity.this,R.style.CustomAlertDialog);// 自分のstyle
+                AlertDialog.Builder customBuilder  = new AlertDialog.Builder(WeatherActivity.this);
+//                String[] data = {"未実装中1", "未実装中2", "未実装中3", "未実装中4"};
+//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+//                ListView listView = (ListView) layout.findViewById(R.id.rain_listView);
+//                listView.setAdapter(adapter);
                 // dialog.setTitle("降水");
-                //  dialog.setView(layout).setNegativeButton("閉じる", null).show();
-                dialog.setView(layout).setNegativeButton("閉じる", null).show();
+//                  dialog.setView(layout).setNegativeButton("閉じる", null).show();
+
+
+                TextView rain06= (TextView) layout.findViewById(R.id.rain06);
+                TextView umbrella06= (TextView) layout.findViewById(R.id.umbrella06);
+                TextView rain612= (TextView) layout.findViewById(R.id.rain612);
+                TextView umbrella612= (TextView) layout.findViewById(R.id.umbrella612);
+                TextView rain1218= (TextView) layout.findViewById(R.id.rain1218);
+                TextView umbrella1218= (TextView) layout.findViewById(R.id.umbrella1218);
+                TextView rain1824= (TextView) layout.findViewById(R.id.rain1824);
+                TextView umbrella1824= (TextView) layout.findViewById(R.id.umbrella1824);
+
+                SharedPreferences rainPre = PreferenceManager.getDefaultSharedPreferences(this);
+                rain06.setText(rainPre.getString("rain06", "APIでは"));
+                umbrella06.setText(rainPre.getString("umbrella06", "これらの情報"));
+                rain612.setText(rainPre.getString("rain612", "を提供していない"));
+                umbrella612.setText(rainPre.getString("umbrella612", ""));
+                rain1218.setText(rainPre.getString("rain1218", ""));
+                umbrella1218.setText(rainPre.getString("umbrella1218", ""));
+                rain1824.setText(rainPre.getString("rain1824", ""));
+                umbrella1824.setText(rainPre.getString("umbrella1824", ""));
+
+                final  AlertDialog dialog = customBuilder .setView(layout).create();
+                dialog.show();//setPositiveButton("閉じる", null)
+
+                Button colse = (Button)layout.findViewById(R.id.dia_close);
+                colse.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+//                Button b = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+//                b.setBackgroundColor(Color.GRAY);
+//          //      Log.d("dasf:::: ", "" + getDialog().getWindow());
+//                b.setTextColor(Color.WHITE);
+//                b.setWidth(500000000);
                 break;
-            case R.id.clothes:
+          case R.id.clothes:
 
                 break;
             default:
