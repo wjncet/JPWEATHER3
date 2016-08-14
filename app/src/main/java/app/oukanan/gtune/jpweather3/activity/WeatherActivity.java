@@ -284,3 +284,29 @@ public class WeatherActivity extends Activity implements OnClickListener {
         tom_weatherInfoLayout.setVisibility(View.VISIBLE);
     }
 }
+
+
+
+//    public static Bitmap getBitmapFromServer(String imagePath) {
+//
+//        HttpGet get = new HttpGet(imagePath);
+//        HttpClient client = new DefaultHttpClient();
+//        Bitmap pic = null;
+//        try {
+//            HttpResponse response = client.execute(get);
+//            HttpEntity entity = response.getEntity();
+//            InputStream is = entity.getContent();
+//
+//            pic = BitmapFactory.decodeStream(is);   // 关键是这句代码
+//
+//        } catch (ClientProtocolException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return pic;
+//    }
+//
+//imagePath图片路径:http://localhost:8080/app/images/abc.jpg
+//        最后可以将图片显示在手机上
+//        imageView.setImageBitmap(bitmap);
