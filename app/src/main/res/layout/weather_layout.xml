@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -37,6 +38,16 @@
             android:textSize="12sp"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1874CD">
+
+    <ScrollView
+        android:id="@+id/ScrollViewID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -214,6 +225,8 @@
 
     </RelativeLayout>
 
+</ScrollView>
+</RelativeLayout>
     <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="90dp"-->
@@ -279,4 +292,5 @@
             android:text="@string/btn4" />
 
     </LinearLayout>
+
 </LinearLayout>
